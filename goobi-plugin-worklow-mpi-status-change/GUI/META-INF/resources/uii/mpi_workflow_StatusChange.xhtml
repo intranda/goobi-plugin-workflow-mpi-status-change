@@ -1,0 +1,144 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:x="http://myfaces.apache.org/tomahawk"
+    xmlns:intranda="http://xmlns.jcp.org/jsf/composite/composites"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:p="http://primefaces.org/ui">
+
+    <composite:interface>
+    </composite:interface>
+
+    <composite:implementation>
+
+        <h:panelGroup
+            prependId="false"
+            rendered="#{NavigationForm.workflowPlugin.displayImputField != 'true'}">
+            <h:form
+                id="selectForm"
+                prependId="false"
+                styleClass="form-horizontal form-bordered">
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="box box-color box-bordered">
+                            <div class="box-title">
+                                <h3>
+                                    <i class="fa fa-plug"></i>
+                                    <h:outputText value="#{msgs.mpi_book_record}" />
+                                </h3>
+                            </div>
+                            <div class="box-content">
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <td align="center">
+                                            <h:commandButton
+                                                value="#{msgs.mpi_receipt}"
+                                                action="#{NavigationForm.Reload}"
+                                                styleClass="btn"
+                                                style="background-color: #368ee0;color: #fff;">
+                                                <f:setPropertyActionListener
+                                                    value="true"
+                                                    target="#{NavigationForm.workflowPlugin.displayImputField}" />
+                                                <f:setPropertyActionListener
+                                                    value="mpi_receipt"
+                                                    target="#{NavigationForm.workflowPlugin.usage}" />
+                                            </h:commandButton>
+                                        </td>
+                                        <td align="center">
+                                            <h:commandButton
+                                                value="#{msgs.mpi_return}"
+                                                action="#{NavigationForm.Reload}"
+                                                styleClass="btn"
+                                                style="background-color: #368ee0;color: #fff;">
+                                                <f:setPropertyActionListener
+                                                    value="true"
+                                                    target="#{NavigationForm.workflowPlugin.displayImputField}" />
+                                                <f:setPropertyActionListener
+                                                    value="mpi_return"
+                                                    target="#{NavigationForm.workflowPlugin.usage}" />
+                                            </h:commandButton>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+        </h:panelGroup>
+
+        <h:panelGroup
+            prependId="false"
+            rendered="#{NavigationForm.workflowPlugin.displayImputField == 'true'}">
+            <h:form
+                id="edit"
+                prependId="false"
+                styleClass="form-horizontal form-bordered"
+                                onkeypress="submitOnEnter(event);"
+                
+                >
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="box box-color box-bordered">
+                            <div class="box-title">
+                                <h3>
+                                    <i class="fa fa-plug"></i>
+                                    <h:outputText value="#{msgs[NavigationForm.workflowPlugin.usage]}" />
+                                </h3>
+                            </div>
+                            <div class="box-content">
+
+                                <h:outputText value="Bitte positionieren Sie den Cursor im Einfabefeld und scannen Sie den Barcode der Akte." />
+
+                                <intranda:formInputText
+                                    id="barcode"
+                                    label="#{msgs.mpi_barcode}"
+                                    field="#{NavigationForm.workflowPlugin.barcode}"
+                                    help="#{msgs.helpBarcode}"
+                                    name="barcode"
+                                    fieldStyle="form-control"
+                                    required="false" />
+                                    
+                                    <x:commandButton
+                                                styleClass="submitOnEnter"
+                                                type="submit"
+                                                id="FilterAlle"
+                                                forceId="true"
+                                                style="display: none;"
+                                                action="#{NavigationForm.workflowPlugin.updateStatus}" />
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <h:commandButton
+                    value="#{msgs.mpi_finish}"
+                    action="#{NavigationForm.Reload}"
+                    styleClass="btn"
+                    style="background-color: #368ee0;color: #fff;">
+                    <f:setPropertyActionListener
+                        value=""
+                        target="#{NavigationForm.workflowPlugin.displayImputField}" />
+                    <f:setPropertyActionListener
+                        value=""
+                        target="#{NavigationForm.workflowPlugin.usage}" />
+                </h:commandButton>
+
+            </h:form>
+        </h:panelGroup>
+
+
+
+
+    </composite:implementation>
+</ui:composition>
