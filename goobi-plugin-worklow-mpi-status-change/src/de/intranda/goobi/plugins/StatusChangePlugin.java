@@ -39,13 +39,13 @@ public class StatusChangePlugin implements IWorkflowPlugin {
     public void updateStatus() {
 
         if (StringUtils.isBlank(barcode)) {
-            Helper.setFehlerMeldung("TODO: field is empty");
+            Helper.setFehlerMeldung("mpi_error_barcodeIsEmpty");
             return;
         }
 
         Process process = ProcessManager.getProcessByTitle(barcode);
         if (process == null) {
-            Helper.setFehlerMeldung("TODO: cannot find barcode");
+            Helper.setFehlerMeldung("mpi_error_cannotFindBarcode");
             return;
         }
 
@@ -62,25 +62,25 @@ public class StatusChangePlugin implements IWorkflowPlugin {
 
         if (usage.equals("mpi_receipt")) {
             if (receiptStep == null) {
-                Helper.setFehlerMeldung("TODO: " + taskNameReceipt + " not found");
+                Helper.setFehlerMeldung(Helper.getTranslation("mpi_error_taskNotFound", taskNameReceipt));
                 return;
             } else if (receiptStep.getBearbeitungsstatusEnum().equals(StepStatus.DONE)) {
-                Helper.setMeldung("TODO: " + taskNameReceipt + " already processed");
+                Helper.setMeldung(Helper.getTranslation("mpi_error_taskAlreadyProcessed", barcode));
                 return;
             }
             new HelperSchritte().CloseStepObjectAutomatic(receiptStep);
-            Helper.setMeldung("TODO: erfolgreich registriert");
+            Helper.setMeldung(Helper.getTranslation("mpi_success", barcode));
 
         } else if (usage.equals("mpi_return")) {
             if (returnStep == null) {
-                Helper.setFehlerMeldung("TODO: " + taskNameReturn + " not found");
+                Helper.setFehlerMeldung(Helper.getTranslation("mpi_error_taskNotFound", taskNameReturn));
                 return;
             } else if (returnStep.getBearbeitungsstatusEnum().equals(StepStatus.DONE)) {
-                Helper.setMeldung("TODO: " + taskNameReceipt + " already processed");
+                Helper.setMeldung(Helper.getTranslation("mpi_error_taskAlreadyProcessed", barcode));
                 return;
             }
             new HelperSchritte().CloseStepObjectAutomatic(returnStep);
-            Helper.setMeldung("TODO: erfolgreich registriert");
+            Helper.setMeldung(Helper.getTranslation("mpi_success", barcode));
         }
     }
 

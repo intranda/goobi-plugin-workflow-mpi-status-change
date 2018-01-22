@@ -78,9 +78,7 @@
                 id="edit"
                 prependId="false"
                 styleClass="form-horizontal form-bordered"
-                                onkeypress="submitOnEnter(event);"
-                
-                >
+                onkeypress="submitOnEnter(event);">
 
                 <div class="row">
                     <div class="col-sm-12">
@@ -92,9 +90,7 @@
                                 </h3>
                             </div>
                             <div class="box-content">
-
-                                <h:outputText value="Bitte positionieren Sie den Cursor im Einfabefeld und scannen Sie den Barcode der Akte." />
-
+                               
                                 <intranda:formInputText
                                     id="barcode"
                                     label="#{msgs.mpi_barcode}"
@@ -103,15 +99,15 @@
                                     name="barcode"
                                     fieldStyle="form-control"
                                     required="false" />
-                                    
-                                    <x:commandButton
-                                                styleClass="submitOnEnter"
-                                                type="submit"
-                                                id="FilterAlle"
-                                                forceId="true"
-                                                style="display: none;"
-                                                action="#{NavigationForm.workflowPlugin.updateStatus}" />
-                                    
+
+                                <x:commandButton
+                                    styleClass="submitOnEnter"
+                                    type="submit"
+                                    id="FilterAlle"
+                                    forceId="true"
+                                    style="display: none;"
+                                    action="#{NavigationForm.workflowPlugin.updateStatus}" />
+
                             </div>
                         </div>
                     </div>
@@ -119,21 +115,26 @@
 
 
 
-
-
-                <h:commandButton
-                    value="#{msgs.mpi_finish}"
-                    action="#{NavigationForm.Reload}"
-                    styleClass="btn"
-                    style="background-color: #368ee0;color: #fff;">
-                    <f:setPropertyActionListener
-                        value=""
-                        target="#{NavigationForm.workflowPlugin.displayImputField}" />
-                    <f:setPropertyActionListener
-                        value=""
-                        target="#{NavigationForm.workflowPlugin.usage}" />
-                </h:commandButton>
-
+                <div
+                    class="form-actions"
+                    style="margin-top: 20px">
+                    
+                    <h:commandLink
+                        styleClass="btn btn-lightgrey margin-sides-less  pull-right"
+                        action="#{NavigationForm.Reload}">
+                        <i class="fa fa-undo margin-right-5"></i>
+                        <f:setPropertyActionListener
+                            value=""
+                            target="#{NavigationForm.workflowPlugin.displayImputField}" />
+                        <f:setPropertyActionListener
+                            value=""
+                            target="#{NavigationForm.workflowPlugin.usage}" />
+                        
+                        <h:outputText value="#{msgs.mpi_finish}" />
+                    </h:commandLink>
+                    
+                    
+                </div>
             </h:form>
         </h:panelGroup>
 
