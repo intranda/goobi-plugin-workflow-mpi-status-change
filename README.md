@@ -3,8 +3,7 @@ Goobi workflow Plugin: goobi-plugin-workflow-mpi-status-change
 
 <img src="https://goobi.io/wp-content/uploads/logo_goobi_plugin.png" align="right" style="margin:0 0 20px 20px;" alt="Plugin for Goobi workflow" width="175" height="109">
 
-	
-This plugin is used to change the status of processes by scanning barcodes with a barcode scanning device. It is used in the archive of the MPI WG.
+This Workflow Plugin for Goobi workflow is used to change the status of processes by scanning existing barcodes using a barcode scanning device. It was developed for a use case in the archive of the MPI WG.
 
 This is a plugin for Goobi workflow, the open source workflow tracking software for digitisation projects. More information about Goobi workflow is available under https://goobi.io. If you want to get in touch with the user community simply go to https://community.goobi.io.
 
